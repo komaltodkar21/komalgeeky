@@ -338,5 +338,17 @@ class ProfileView(View):
                zipcode = form.cleaned_data['zipcode']
                reg = Customer(user=usr, name=name, locality=locality, city=city, state=state, zipcode=zipcode)
                reg.save()
-               messages.success(request, 'Congratulations!! Profile Updated Successfully.')
+               return redirect('address')
+               # messages.success(request, 'Congratulations!! Profile Updated Successfully.')
           return render(request, 'app/profile.html',{'form':form})
+
+class SearchResultView(View):
+     model = Product
+     template_name = 'search_results.html'
+
+     def get_queryset(self): # new
+          query = self.request.GET.get('q')
+          object_list = Product.objects.filter(
+               Q(title__icontains=query)
+          )
+          return object_list

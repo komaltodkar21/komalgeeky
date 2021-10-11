@@ -17,6 +17,7 @@ urlpatterns = [
     path('buy/', views.buy_now, name='buy-now'),
     # path('profile/', views.profile, name='profile'),
     path('profile/', views.ProfileView.as_view(), name='profile'),
+    path('search/', views.SearchResultView.as_view(), name='search_results'),
     
     path('address/', views.address, name='address'),
     path('orders/', views.orders, name='orders'),
